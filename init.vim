@@ -5,7 +5,7 @@ let mapleader = ","
 " html skeleton
 " interactive shell
 " set shellcmdflag=-ic
-
+inoremap <C-u> <ESC>:UnicodeSearch i
 
 call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
@@ -14,10 +14,14 @@ Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'neoclide/coc.nvim'
 Plug 'ollykel/v-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/suda.vim'
+Plug 'ackyshake/Spacegray.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'mattn/emmet-vim'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'GustavoPreitoP/doom-themes.nvim'
+Plug 'joshdick/onedark.vim'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -60,7 +64,7 @@ set termguicolors
 " try disabling this option. Default value:
 "let g:neosolarized_termBoldAsBright = 0
 set background=dark
-colorscheme nord
+colorscheme spacegray 
 filetype plugin on
 " transparency
 hi Normal guibg=NONE ctermbg=NONE
@@ -131,11 +135,11 @@ nnoremap <leader>dw :windo set wrap<CR><C-w>h
 
 
 " airline
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'violet'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#show_close_button = 0
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 
 " autopep8
