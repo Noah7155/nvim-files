@@ -14,9 +14,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'neoclide/coc.nvim'
 Plug 'ollykel/v-vim'
 Plug 'jiangmiao/auto-pairs'
+<<<<<<< HEAD
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+=======
+Plug 'vim-airline/vim-airline-themes'
+>>>>>>> 5e85ed8279ebb9d60c4f35fe21ecac911f50d8fa
 Plug 'lambdalisue/suda.vim'
 Plug 'ackyshake/Spacegray.vim'
 Plug 'chrisbra/unicode.vim'
