@@ -9,7 +9,7 @@ inoremap <C-u> <ESC>:UnicodeSearch i
 
 call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
-" Plug 'luochen1990/rainbow'
+ Plug 'luochen1990/rainbow'
 Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'neoclide/coc.nvim'
 Plug 'ollykel/v-vim'
@@ -17,12 +17,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/suda.vim'
+Plug 'liuchengxu/vim-which-key'
 Plug 'ackyshake/Spacegray.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'GustavoPreitoP/doom-themes.nvim'
+Plug 'GustavoPrietoP/doom-themes.nvim'
 Plug 'joshdick/onedark.vim'
 "Plug 'arcticicestudio/nord-vim'
 Plug 'preservim/nerdcommenter'
@@ -31,7 +31,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'sheerun/vim-polyglot'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plug 'anuvyklack/pretty-fold.nvim'
+"Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " autopep8 needed
 Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'vim-airline/vim-airline'
@@ -41,6 +42,17 @@ Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
 call plug#end()
 
+"setlocal foldmethod=manual
+
+"set nofoldenable
+
+"set foldlevel=99
+
+":set foldmethod=manual
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> za
+vnoremap <F9> zf
 
 " colorscheme
 set termguicolors
@@ -73,6 +85,8 @@ filetype plugin on
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNr guibg=NONE guifg=NONE
+
+highlight Comment cterm=italic gui=italic
 
 let g:startify_custom_header = startify#center([
             \' _____  ____  _    ______  ____  _   _ _____ _    _    _   _ _____ ',
@@ -146,7 +160,7 @@ nnoremap <leader>dw :windo set wrap<CR><C-w>h
 
 
 " airline
-let g:airline_theme = 'violet'
+let g:airline_theme = 'lighthaus'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#show_close_button = 0
