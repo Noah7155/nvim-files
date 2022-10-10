@@ -9,22 +9,28 @@ inoremap <C-u> <ESC>:UnicodeSearch i
 
 call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
- Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'neoclide/coc.nvim'
+Plug 'sainnhe/everforest'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+Plug 'sainnhe/sonokai'
 Plug 'ollykel/v-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'mbbill/undotree'
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-startify'
 Plug 'lambdalisue/suda.vim'
+Plug 'mhinz/vim-startify'
+Plug 'glepnir/dashboard-nvim'
 Plug 'liuchengxu/vim-which-key'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'ackyshake/Spacegray.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'mattn/emmet-vim'
 Plug 'GustavoPrietoP/doom-themes.nvim'
 Plug 'joshdick/onedark.vim'
-"Plug 'arcticicestudio/nord-vim'
+Plug 'nokobear/vim-colorscheme-edit'
+Plug 'arcticicestudio/nord-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -37,6 +43,7 @@ Plug 'anuvyklack/pretty-fold.nvim'
 Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rust-lang/rust.vim'
 " Always at the end
 Plug 'ryanoasis/vim-devicons'
 " Initialize plugin system
@@ -49,17 +56,17 @@ call plug#end()
 "set foldlevel=99
 
 ":set foldmethod=manual
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> za
-vnoremap <F9> zf
+nnoremap <C-f> zfa}
+nnoremap <C-u> za
+nnoremap <F6> :NERDTreeToggle<CR>
+nnoremap <F5> :UndotreeToggle<CR>
 
 " colorscheme
 set termguicolors
-"syntax enable
+hi Folded guibg=#010101
+let g:everforest_background='hard'
 " Default value is "normal", Setting this option to "high" or "low" does use the
-" same Solarized palette but simply shifts some values up or down in order to
-" expand or compress the tonal range displayed.
+" same Solarized palette but simply shifts some values up or down in order to expand or compress the tonal range displayed.
 "let g:neosolarized_contrast = "normal"
 " Special characters such as trailing whitespace, tabs, newlines, when displayed
 " using ":set list" can be set to one of three levels depending on your needs.
@@ -78,25 +85,52 @@ set termguicolors
 " text output by commands like `ls` aren't what you expect, you might want to
 " try disabling this option. Default value:
 "let g:neosolarized_termBoldAsBright = 0
+let g:catppuccin_flavour = "mocha"
 set background=dark
-colorscheme spacegray 
+colorscheme everforest 
 filetype plugin on
 " transparency
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi CursorLineNr guibg=NONE guifg=NONE
 
-highlight Comment cterm=italic gui=italic
+" highlight Comment cterm=italic gui=italic
 
+"let g:startify_custom_header = startify#center([
+"            \' _____  ____  _    ______  ____  _   _ _____ _    _    _   _ _____ ',
+"            \'|  __ \|    \| \  / ____/ / __ \| \ | | ____| |  | \  | \_/ | ____|',
+"            \'| |||| | ||| |  \/ /   __| |||| |  \| | ____| |  |  \ |     | |___ ',
+"            \'| |||| |   _/| \ \ \  |_ | |||| | \ | | |   | |  | \ \| | | | ____|',
+"            \'| |||| | \ \ | |\ \ \__| | |||| | |\  | |   | |__| |\ \ | | | |___ ',
+"            \'|_____/|_|\_\|_| \_\____/ \____/|_| \_|_|   |____|_| \_\|_|_|_____|'
+"            \])
+"
 let g:startify_custom_header = startify#center([
-            \' _____  ____  _    ______  ____  _   _ _____ _    _    _   _ _____ ',
-            \'|  __ \|    \| \  / ____/ / __ \| \ | | ____| |  | \  | \_/ | ____|',
-            \'| |||| | ||| |  \/ /   __| |||| |  \| | ____| |  |  \ |     | |___ ',
-            \'| |||| |   _/| \ \ \  |_ | |||| | \ | | |   | |  | \ \| | | | ____|',
-            \'| |||| | \ \ | |\ \ \__| | |||| | |\  | |   | |__| |\ \ | | | |___ ',
-            \'|_____/|_|\_\|_| \_\____/ \____/|_| \_|_|   |____|_| \_\|_|_|_____|'
-            \])
+			\'⠀⢀⢔⣷⣿⣧⡣⡀⠀⠀⠀⠀⢸⢸⣷⣕⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+			\'⢔⣵⣿⣿⣿⣿⣷⡕⡀⠀⠀⠀⢸⢸⣿⣿⣷⣕⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⣶⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+			\'⣿⣿⣿⣿⣿⣿⣿⣿⣎⢆⠀⠀⢸⢸⣿⣿⣿⣿⣷⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠿⠿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+			\'⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡣⡀⢸⢸⣿⣿⣿⣿⣿⢸⠀⠀⠀⠀⣶⣢⣴⠶⠿⢶⣦⡀⠀⠀⣠⣶⠶⠿⠶⣦⡀⠀⠀⣠⣶⠶⠿⠶⣶⣔⠸⣿⣿⣧⠀⠀⠠⢰⣿⣿⢏⣿⣿⣿⠀⣿⣿⣷⣾⣿⣿⣷⣤⣾⣿⣿⣿⣷⣆',
+			\'⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣷⣕⣼⢸⣿⣿⣿⣿⣿⢸⠀⠀⠀⠀⣿⡏⠀⠈⠉⢡⢹⣷⠀⣾⡟⠄⠥⠤⠍⠮⣿⡌⣾⡟⡑⠀⠉⠀⠊⢿⣧⢹⣿⣿⡆⢄⢠⣿⣿⡟⢸⣿⣿⣿⠀⣿⣿⣿⠉⠰⢹⣿⣿⡟⡅⠈⢻⣿⣿',
+			\'⣿⣿⣿⣿⣿⢨⢿⣿⣿⣿⣿⣿⣮⢸⣿⣿⣿⣿⣿⢸⠀⠀⠀⠀⣿⡇⠀⠀⠀⢸⢸⣿⠀⣿⡛⠛⠛⠛⠛⠛⠛⢣⣿⡇⠀⠀⠀⠀⠘⢸⣿⢠⢻⣿⣿⡄⣾⣿⡟⠐⢸⣿⣿⣿⠀⣿⣿⣿⠀⠀⢸⣿⣿⡇⡇⠀⢸⣿⣿',
+			\'⣿⣿⣿⣿⣿⠀⠑⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⠀⠀⠀⠀⣿⡇⠀⠀⠀⢸⢸⣿⢀⢿⣇⢂⠀⠀⠀⠀⠀⠀⣿⣇⢆⠀⠀⠀⡈⣸⡿⠐⠂⢿⣿⣿⣿⡿⠡⠀⢸⣿⣿⣿⠀⣿⣿⣿⠀⠀⢸⣿⣿⡇⡇⠀⢸⣿⣿',
+			\'⣿⣿⣿⣿⣿⠀⠀⠘⢜⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⠀⠀⠀⠀⣿⡇⠀⠀⠀⠸⢸⣿⠈⠈⠻⢷⣬⣭⣥⣶⠿⠂⠈⠻⣶⣥⣤⣬⡾⠟⠁⠀⠀⠈⣿⣿⣿⠃⠁⠀⢸⣿⣿⣿⠀⣿⣿⣿⠀⠀⢸⣿⣿⡇⠇⠀⢸⣿⣿',
+			\'⣿⣿⣿⣿⣿⠀⠀⠀⠀⠪⢻⣿⣿⣿⣿⣿⣿⣿⣿⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+			\'⠊⠻⣿⣿⣿⠀⠀⠀⠀⠀⠑⡽⣿⣿⣿⣿⡿⡫⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+			\'⠀⠀⠈⠻⣿⠀⠀⠀⠀⠀⠀⠈⢚⢿⡿⡫⠊⠀                                                             ',
+            \])                                                                                                                              
+"let g:startify_custom_header = startify#center([
+" \ '                                        ▟▙            ',
+" \ '                                        ▝▘            ',
+" \ '██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
+" \ '██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
+" \ '██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
+" \ '██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
+" \ '▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
+" \ '',
+" \])
 
+" let startify_custom_header = system('ascii-image-converter ~/Downloads/logo@2x.png --complex --color')
+" let g:startify_custom_header = startify#center(startify#pad(startify#fortune#cowsay()))
 " keybindings
 nmap <silent> <leader>q :q<CR>
 nmap <silent> <leader>w :w<CR>
@@ -160,7 +194,7 @@ nnoremap <leader>dw :windo set wrap<CR><C-w>h
 
 
 " airline
-let g:airline_theme = 'lighthaus'
+let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#show_close_button = 0
@@ -176,7 +210,7 @@ let g:ctrlp_working_path_mode = 'w'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'find %s -maxdepth 3 -type f']
 
 " nerdtree
-let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeShowLineNumbers = 0
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrowExpandable = ''
@@ -199,7 +233,7 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=undercurl ctermfg=245 cterm=un
 
 
 " rainbow
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 " let g:rainbow_conf = {'guifgs' : ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick'], 'ctermfgs' : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']}
 
 
@@ -238,5 +272,19 @@ augroup autocmdgroup
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " code prettier
     autocmd Filetype python nmap <buffer> <leader>, :Autopep8<CR>
+    autocmd ColorScheme * hi Folded guibg=#010101
     autocmd Filetype javascript,typescript,css,less,scss,json,graphql,markdown,vue,svelte,yaml,html nmap <buffer> <leader>, :Prettier<CR>
 augroup end
+
+hi Folded guibg=#010101
+hi Normal guibg=#010101
+hi Use guibg=#010101
+hi buffer guibg=#010101
+hi background guibg=#010101
+hi bufenter guibg=#010101
+hi BufNewFile guibg=#010101
+hi norelativenumber guibg=#010101
+hi nonumber guibg=#010101
+hi Neovim guibg=#010101 
+hi SignColumn guibg=#010101
+hi EndOfBuffer guibg=#010101
