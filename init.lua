@@ -1,6 +1,6 @@
 vim.cmd[[" general
 " set clipboard+=unnamedplus
-set autoread nocursorcolumn nocursorline encoding=utf-8 expandtab fillchars=eob:\ ,vert:\| inccommand=split mouse=a number relativenumber shiftwidth=4 tabstop=4 wildmode=longest,full lazyredraw
+set autoread nocursorcolumn nocursorline encoding=utf-8 expandtab fillchars=eob:\ ,vert:\| inccommand=split mouse=a number shiftwidth=4 tabstop=4 wildmode=longest,full lazyredraw
 let mapleader = ","
 " html skeleton
 " interactive shell
@@ -9,7 +9,10 @@ inoremap <C-u> <ESC>:UnicodeSearch i
 
 call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
+Plug 'stevearc/vim-arduino'
 Plug 'luochen1990/rainbow'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'edKotinsky/Arduino.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
@@ -20,6 +23,8 @@ Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/suda.vim'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'glepnir/dashboard-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'liuchengxu/vim-which-key'
@@ -41,8 +46,6 @@ Plug 'anuvyklack/pretty-fold.nvim'
 "Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " autopep8 needed
 Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'rust-lang/rust.vim'
 " Always at the end
 Plug 'ryanoasis/vim-devicons'
@@ -192,18 +195,7 @@ nnoremap <leader>gs :Git<CR>
 " wrap
 nnoremap <leader>dw :windo set wrap<CR><C-w>h
 
-
-" airline
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#show_close_button = 0
-"let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-
-" autopep8
 let g:autopep8_disable_show_diff=1
-
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'w'
@@ -275,19 +267,7 @@ augroup autocmdgroup
     autocmd ColorScheme * hi Folded guibg=#010101
     autocmd Filetype javascript,typescript,css,less,scss,json,graphql,markdown,vue,svelte,yaml,html nmap <buffer> <leader>, :Prettier<CR>
 augroup end
-
-hi Folded guibg=#010101
-hi Normal guibg=#010101
-hi Use guibg=#010101
-hi buffer guibg=#010101
-hi background guibg=#010101
-hi bufenter guibg=#010101
-hi BufNewFile guibg=#010101
-hi norelativenumber guibg=#010101
-hi nonumber guibg=#010101
-hi Neovim guibg=#010101 
-hi SignColumn guibg=#010101
-hi EndOfBuffer guibg=#010101]]
+]]
 -- Packer installation
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
@@ -589,8 +569,8 @@ cmp.setup({
   },
 
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -687,3 +667,30 @@ require("lspsaga").init_lsp_saga({
     quit = '<esc>',
   },
 })
+
+vim.cmd[[
+hi Folded guibg=#010101
+hi Normal guibg=#010101
+hi Use guibg=#010101
+hi buffer guibg=#010101
+hi background guibg=#010101
+hi bufenter guibg=#010101
+hi BufNewFile guibg=#010101
+hi norelativenumber guibg=#010101
+hi nonumber guibg=#010101
+hi Neovim guibg=#010101 
+"hi SignColumn guibg=#010101
+hi EndOfBuffer guibg=#010101
+"hi Buffer guibg=#010101
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\     'colour_names'
+\ ]
+let g:Hexokinase_highlighters = ['backgroundfull']
+
+]]
