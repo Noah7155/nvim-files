@@ -3,4 +3,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 cp init.lua ~/.config/nvim/
 mkdir ~/.config/nvim/lua
-cp diagnostics.lua lspconfig-config.lua lspconfig.lua lspconfigs.config lualine-config.lua nvim-cmp-config.lua nvim-tree-config.lua telescope-config.lua treesitter-config.lua ~/.config/nvim/lua/
+cp lua/diagnostics.lua lua/lspconfig-config.lua lua/lspconfig.lua lua/lspconfigs.config lua/lualine-config.lua lua/nvim-cmp-config.lua lua/nvim-tree-config.lua lua/telescope-config.lua lua/treesitter-config.lua ~/.config/nvim/lua/
