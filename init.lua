@@ -11,6 +11,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
 Plug 'stevearc/vim-arduino'
 Plug 'luochen1990/rainbow'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lspconfig'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'edKotinsky/Arduino.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
