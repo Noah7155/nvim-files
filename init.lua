@@ -1,7 +1,7 @@
 vim.cmd[[" general
 " set clipboard+=unnamedplus
 set autoread nocursorcolumn nocursorline encoding=utf-8 expandtab fillchars=eob:\ ,vert:\| inccommand=split mouse=a number shiftwidth=4 tabstop=4 wildmode=longest,full lazyredraw
-let mapleader = ","
+let mapleader = "g"
 " html skeleton
 " interactive shell
 " set shellcmdflag=-ic
@@ -17,22 +17,21 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'edKotinsky/Arduino.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sainnhe/everforest'
+Plug 'Noah7155/doom-rouge.nvim'
 Plug 'sainnhe/sonokai'
 Plug 'onsails/lspkind.nvim'
 Plug 'ollykel/v-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'itchyny/lightline.vim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'mbbill/undotree'
-Plug 'powerline/powerline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/suda.vim'
 Plug 'mhinz/vim-startify'
-Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'glepnir/dashboard-nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -99,7 +98,6 @@ let g:everforest_background='hard'
 "let g:neosolarized_termBoldAsBright = 0
 let g:catppuccin_flavour = "mocha"
 set background=dark
-colorscheme everforest 
 filetype plugin on
 " transparency
 hi Normal guibg=NONE ctermbg=NONE
@@ -209,6 +207,8 @@ let g:autopep8_disable_show_diff=1
 " ctrlp
 let g:ctrlp_working_path_mode = 'w'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'find %s -maxdepth 3 -type f']
+
+let g:lightline = { 'colorscheme': 'wombat' }
 
 " nerdtree
 let g:NERDTreeShowLineNumbers = 0
@@ -335,15 +335,6 @@ require("packer").startup(function()
 
   -- bracket autocompletion
   use 'vim-scripts/auto-pairs-gentle'
-
-  -- Fancier statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-      'arkav/lualine-lsp-progress',
-    },
-  }
 
   -- Fast incremental parsing library
   use 'nvim-treesitter/nvim-treesitter'
@@ -645,16 +636,6 @@ vim.g.AutoPairs = {
   ['<']='>',
 }
 
--- lualine
-require('lualine').setup({
-  sections = {
-    lualine_c = {
-      {'filename', path = 1},
-      'lsp_progress',
-    },
-  },
-})
-
 -- treesitter
 require('nvim-treesitter.configs').setup {
   ensure_installed = {"python", "rust", "c", "cpp", "bash", "go", "html"},
@@ -678,6 +659,7 @@ require("lspsaga").init_lsp_saga({
 })
 
 vim.cmd[[
+colorscheme doom-rouge
 hi Folded guibg=#010101
 hi Normal guibg=#010101
 hi Use guibg=#010101
@@ -702,4 +684,5 @@ let g:Hexokinase_optInPatterns = [
 \ ]
 let g:Hexokinase_highlighters = ['backgroundfull']
 
+colorscheme doom-rouge
 ]]
